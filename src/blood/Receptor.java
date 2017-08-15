@@ -10,5 +10,5 @@ package blood;
  * @author IACF
  */
 public class Receptor {
-    
+    ok;
 }
