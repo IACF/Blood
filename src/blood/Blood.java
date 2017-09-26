@@ -25,7 +25,7 @@ public class Blood {
 //        doar.setNome("NomeTeste");
 //        
 //        System.out.println(doar.getNome());
-        
+        cadastro();
        
         
     }
@@ -33,12 +33,19 @@ public class Blood {
     
     public static void cadastro(){
         Doador p = new Doador();
+        Doador p2 = new Doador();
         p.setGenero("M");
         p.setNome("fasfa");
         
 //...
-        CadastroPessoa bdPessoa = new CadastroPessoa();
-        bdPessoa.setPessoa(p);
+        CadastroPessoa bdPessoa = CadastroPessoa.getInstancia();
+        
+        
+        
+        bdPessoa.setPessoa(p2);
+        
+        
+        bdPessoa.insert();
         
     }
     
