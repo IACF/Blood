@@ -9,6 +9,15 @@ package blood;
  *
  * @author IACF
  */
-public class Receptor {
-    ok;
+public class Receptor extends Apessoa {
+    
+    @Override
+    public void examinar(){
+        System.out.println("examinou");
+    }
+    
+    public void receberSangue(BancoDeSangue b, float quantidadeDeSangue){
+        this.sangue.setQuantidade(quantidadeDeSangue);
+        b.retirarDoFreezer(this.sangue);
+    }
 }

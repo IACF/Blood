@@ -10,12 +10,26 @@ package blood;
  * @author IACF
  */
 public class Sangue {
-    private String tipagemSanguinea;
-    private String fatorRh;
-    private String compatibilidade[];
-    
-    public String compativel(){
-        return "A";
+    public String tipagemSanguinea;
+    public float quantidade;
+
+    public void setQuantidade(float quantidade) {
+        this.quantidade = quantidade;
+        
     }
+    
+    
+
+
+    public String getTipagemSanguinea() {
+        return tipagemSanguinea;
+    }
+
+    public void setTipagemSanguinea(String tipagemSanguinea) {
+        this.tipagemSanguinea = tipagemSanguinea;
+    }
+
+    
+    
     
 }
