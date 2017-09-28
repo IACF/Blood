@@ -10,5 +10,5 @@ package blood;
  * @author IACF
  */
 public interface Ipessoa  {
-    
+    abstract public void  examinar();
 }

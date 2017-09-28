@@ -10,18 +10,27 @@ package blood;
  * @author IACF
  */
 public class CadastroPessoa {
-   private Apessoa pessoa;
+   private static Apessoa pessoa;
    private String ultimaDoacao;
    private Irepositorio<Apessoa> repositorio;
-
+   private static CadastroPessoa instancia;
+   
+   private CadastroPessoa(){};
+   
+   public static CadastroPessoa getInstancia(){
+       if (CadastroPessoa.instancia == null)
+           instancia = new CadastroPessoa();
+       return instancia;
+   }
+   
     public void setPessoa(Doador pessoa) {
         ultimaDoacao = pessoa.getUltimaDoacao();
-        this.pessoa = pessoa;
+        CadastroPessoa.pessoa = pessoa;
     }
     
     public void setPessoa(Receptor pessoa){
         this.ultimaDoacao = null;
-        this.pessoa = pessoa;
+        CadastroPessoa.pessoa = pessoa;
     }
    
    public void insert(){

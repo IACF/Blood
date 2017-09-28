@@ -10,7 +10,8 @@ package blood;
  * @author IACF
  */
 public class Doador extends Apessoa {
-    private String ultimaDoacao;
+    
+    private String ultimaDoacao; // Substituir o tipo string por DATE ; Tratar possiveis erros do tipo
     
     
     public void doarSangue(BancoDeSangue b, float v){
