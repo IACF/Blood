@@ -5,15 +5,19 @@
  */
 package blood;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author IACF
- * @param <Entidade>
  */
-public interface Irepositorio<Entidade> {
-    public void insert(Entidade e);
-    public void clear();
-    public List<Entidade> listar();
+public class CadastroFrezer extends ArepositorioArray<Freezer> {
+
+    @Override
+    public void insert(Freezer e) {
+        super.insert(e);
+    }
+    
+    
+    
 }

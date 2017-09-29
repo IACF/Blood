@@ -11,7 +11,7 @@ package blood;
  */
 public class Doador extends Apessoa {
     
-    private String ultimaDoacao; // Substituir o tipo string por DATE ; Tratar possiveis erros do tipo
+     // Substituir o tipo string por DATE ; Tratar possiveis erros do tipo
     
     
     public void doarSangue(BancoDeSangue b, float v){
@@ -22,11 +22,11 @@ public class Doador extends Apessoa {
     }
 
     public String getUltimaDoacao() {
-        return ultimaDoacao;
+        return ultimaTransfusao;
     }
 
     public void setUltimaDoacao(String ultimaDoacao) {
-        this.ultimaDoacao = ultimaDoacao;
+        this.ultimaTransfusao = ultimaDoacao;
     }
 
     

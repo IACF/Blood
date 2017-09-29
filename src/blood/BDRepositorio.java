@@ -5,24 +5,26 @@
  */
 package blood;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author IACF
  */
-public class BDRepositorio<Entidade> implements Irepositorio<Entidade> {
+public class BDRepositorio<Entidade> extends ArepositorioArray<Entidade> {
 
-    private String table;
+    
     
     public BDRepositorio(String table) {
-        this.table = table;
+        
     }
 
     
     
     @Override
     public void insert(Entidade e) {
-        System.out.println("inseriu");
-        //String cmd = "insert into "+table+" values()";
+        
+        //String cmd = "inser\'t into "+table+" values()";
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

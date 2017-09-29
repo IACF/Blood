@@ -41,12 +41,8 @@ public class Blood {
         CadastroPessoa bdPessoa = CadastroPessoa.getInstancia();
         
         
-        
-        bdPessoa.setPessoa(p2);
-        
-        
-        bdPessoa.insert();
-        
+        bdPessoa.insert(p);
+       p.sangue.setTipagemSanguinea("A+");
     }
     
 }

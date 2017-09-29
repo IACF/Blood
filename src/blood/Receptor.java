@@ -16,8 +16,17 @@ public class Receptor extends Apessoa {
         System.out.println("examinou");
     }
     
-    public void receberSangue(BancoDeSangue b, float quantidadeDeSangue){
+    public void receberSangue(BancoDeSangue b, float quantidadeDeSangue, String tipagemSanguinea){
+        
         this.sangue.setQuantidade(quantidadeDeSangue);
-        b.retirarDoFreezer(this.sangue);
+        b.retirarDoFreezer(this.sangue, tipagemSanguinea);
     }
+    public String getUltimaTransfusao() {
+        return ultimaTransfusao;
+    }
+
+    public void setUltimaTransfusao(String ultimaTransfusao) {
+        this.ultimaTransfusao = ultimaTransfusao;
+    }
+    
 }

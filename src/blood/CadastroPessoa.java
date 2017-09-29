@@ -9,10 +9,8 @@ package blood;
  *
  * @author IACF
  */
-public class CadastroPessoa {
+public class CadastroPessoa extends ArepositorioArray<Apessoa> {
    private static Apessoa pessoa;
-   private String ultimaDoacao;
-   private Irepositorio<Apessoa> repositorio;
    private static CadastroPessoa instancia;
    
    private CadastroPessoa(){};
@@ -22,20 +20,12 @@ public class CadastroPessoa {
            instancia = new CadastroPessoa();
        return instancia;
    }
-   
-    public void setPessoa(Doador pessoa) {
-        ultimaDoacao = pessoa.getUltimaDoacao();
-        CadastroPessoa.pessoa = pessoa;
-    }
     
-    public void setPessoa(Receptor pessoa){
-        this.ultimaDoacao = null;
-        CadastroPessoa.pessoa = pessoa;
-    }
    
-   public void insert(){
-       repositorio =  new BDRepositorio("pessoa");
-       repositorio.insert(pessoa);
+    
+   public void insert(Apessoa pessoa){
+       super.insert(pessoa);
    }
+   
    
 }

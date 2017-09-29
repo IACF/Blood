@@ -17,6 +17,9 @@ public abstract class Apessoa implements Ipessoa {
     protected String genero;
     protected boolean statusClinico;
     protected Sangue sangue;
+    protected String ultimaTransfusao;
+
+    
     
     abstract public void  examinar();
 
@@ -68,6 +71,7 @@ public abstract class Apessoa implements Ipessoa {
     public void setStatusClinico(boolean statusClinico) {
         this.statusClinico = statusClinico;
     }
+    
 
     
     

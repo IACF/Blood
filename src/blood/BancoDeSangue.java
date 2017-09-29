@@ -52,12 +52,21 @@ public class BancoDeSangue {
 
     public void colocarNoFreezer(Sangue sangue) { 
         //  Neste argumento de função poderia colocar o Objeto Doador ao invés do Objeto Sangue.
-        freezer.get(sangue.tipagemSanguinea).setQuantidade(sangue.quantidade);  
+        this.freezer.get(sangue.tipagemSanguinea).setQuantidade(sangue.quantidade);  
     }
     
-    public void retirarDoFreezer(Sangue sangue){
+    public void retirarDoFreezer(Sangue sangue, String tipagemSanguinea){
         // Neste argumento de função poderia colocar o Objeto Receptor ao invés do Objeto Sangue.
-        freezer.get(sangue.tipagemSanguinea).doarQuantidade(sangue.quantidade);  
+        if(this.freezer.get(tipagemSanguinea).getQuantidade() < sangue.quantidade )
+            System.out.println("Não contém esta quantidade de sangue");  
+        else
+            this.freezer.get(tipagemSanguinea).doarQuantidade(sangue.quantidade);
     }
-    
+    public void atualizarRepositorio(CadastroFrezer f){
+        f.clear();
+        for (String key : freezer.keySet()){
+            //Capturamos o valor a partir da chave
+            f.insert(this.freezer.get(key));
+        }
+    }
 }
