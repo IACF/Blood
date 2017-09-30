@@ -14,7 +14,7 @@ import java.util.List;
  * @param <Entidade>
  */
 public abstract class ArepositorioArray<Entidade> implements Irepositorio<Entidade> {
-    private ArrayList<Entidade> table = new ArrayList();
+    ArrayList<Entidade> table = new ArrayList();
     @Override
     public void insert(Entidade e){
         table.add((Entidade) e);

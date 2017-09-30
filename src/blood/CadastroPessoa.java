@@ -21,10 +21,14 @@ public class CadastroPessoa extends ArepositorioArray<Apessoa> {
        return instancia;
    }
     
-   
+   public boolean contido(Apessoa pessoa){
+       return this.table.contains(pessoa);
+       
+   }
     
+   @Override
    public void insert(Apessoa pessoa){
-       super.insert(pessoa);
+       super.insert(pessoa); 
    }
    
    

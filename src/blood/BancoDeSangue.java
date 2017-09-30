@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class BancoDeSangue {
     
-    private Map<String, Freezer> freezer;
+    Map<String, Freezer> freezer;
     public Sangue sangue;
     
     public BancoDeSangue() {
@@ -68,5 +68,21 @@ public class BancoDeSangue {
             //Capturamos o valor a partir da chave
             f.insert(this.freezer.get(key));
         }
+    }
+    public Freezer findFreezer(Sangue sangue){
+        
+        for (String key : this.freezer.keySet()){
+           
+           // pegar tamanho do array compatibilidade
+            for(int i=0 ; i<8 ; i++ )
+            {
+                if(  this.freezer.get(key).compatibilidade[i].equals(sangue.getTipagemSanguinea()) && this.freezer.get(key).getQuantidade() >= sangue.quantidade) 
+                {                  
+                    return this.freezer.get(key);                        
+                }else
+                    return null;
+            }
+        }
+        return null;
     }
 }

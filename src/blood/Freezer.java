@@ -12,7 +12,7 @@ package blood;
 public class Freezer {
     public Sangue sangue;
     private float quantidade;
-    private String[] compatibilidade = new String[8];
+    String[] compatibilidade = new String[8];
     
     
     public void setCompatibilidade(String tipagemSanguinea){

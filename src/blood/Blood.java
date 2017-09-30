@@ -25,8 +25,14 @@ public class Blood {
 //        doar.setNome("NomeTeste");
 //        
 //        System.out.println(doar.getNome());
-        cadastro();
-       
+        
+        
+        Doador a = new Doador();
+        
+        String teste;
+        teste = a.getClass().getName();
+        
+        System.out.println(teste);
         
     }
     

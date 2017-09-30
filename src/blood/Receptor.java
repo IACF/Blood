@@ -9,11 +9,31 @@ package blood;
  *
  * @author IACF
  */
+import java.util.Scanner;
 public class Receptor extends Apessoa {
     
+    
     @Override
-    public void examinar(){
-        System.out.println("examinou");
+    public Freezer examinar(BancoDeSangue b)throws BloodTypeNotFoundException,BloodNotEnoughException {
+        
+        try {
+            System.out.println("Tipo Sanguineo");
+            String tipo= entrada.nextLine();
+            if(!tipo.contains("A+") || !tipo.contains("A-") || !tipo.contains("B+") || !tipo.contains("B-")| !tipo.contains("AB+") | !tipo.contains("AB-") | !tipo.contains("O+") | !tipo.contains("O-"))
+                throw new BloodTypeNotFoundException("Tipo Sanguineo inválido");
+            else 
+                this.sangue.setTipagemSanguinea(tipo);      
+        } catch (RuntimeException e) {
+           System.out.println("Aconteceu um erro");
+           System.out.println(e);
+        }
+        
+        Freezer f = b.findFreezer(this.sangue);
+        if(f != null)
+           return f;
+           
+     throw new BloodNotEnoughException("erro LGU");
+        
     }
     
     public void receberSangue(BancoDeSangue b, float quantidadeDeSangue, String tipagemSanguinea){
@@ -28,5 +48,10 @@ public class Receptor extends Apessoa {
     public void setUltimaTransfusao(String ultimaTransfusao) {
         this.ultimaTransfusao = ultimaTransfusao;
     }
+
+    
+
+    
+    
     
 }

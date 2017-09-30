@@ -7,8 +7,13 @@ package blood;
 
 /**
  *
- * @author IACF
+ * @author Yara C. Morais
  */
-public interface Ipessoa  {
-    abstract public Freezer  examinar(BancoDeSangue b) throws BloodTypeNotFoundException,BloodNotEnoughException;
+public class BloodTypeNotFoundException extends Exception{
+    
+      public BloodTypeNotFoundException(String s) {
+        super(s);
+        
+      }
+    
 }

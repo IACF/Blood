@@ -5,6 +5,8 @@
  */
 package blood;
 
+import java.util.Scanner;
+
 /**
  *
  * @author IACF
@@ -18,10 +20,12 @@ public abstract class Apessoa implements Ipessoa {
     protected boolean statusClinico;
     protected Sangue sangue;
     protected String ultimaTransfusao;
-
+     Scanner entrada = new Scanner(System.in);
+    
+    @Override
+    abstract public Freezer examinar(BancoDeSangue b) throws BloodTypeNotFoundException,BloodNotEnoughException ;
     
     
-    abstract public void  examinar();
 
     public String getNome() {
         return nome;
