@@ -21,10 +21,13 @@ public class CadastroPessoa extends ArepositorioArray<Apessoa> {
        return instancia;
    }
     
-   public boolean contido(Apessoa pessoa){
-       return this.table.contains(pessoa);
-       
+   public Apessoa contido(String cpf){
+       for(int i = 0; i < this.table.size(); i++ )
+          if(table.get(i).cpf.equals(cpf))
+                return table.get(i);
+       return null;
    }
+   
     
    @Override
    public void insert(Apessoa pessoa){

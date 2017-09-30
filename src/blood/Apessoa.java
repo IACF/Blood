@@ -14,13 +14,14 @@ import java.util.Scanner;
 public abstract class Apessoa implements Ipessoa {
     protected String nome;
     protected String Rg;
+    protected String cpf;
     protected int idade;
     protected float peso;
     protected String genero;
     protected boolean statusClinico;
     protected Sangue sangue;
     protected String ultimaTransfusao;
-     Scanner entrada = new Scanner(System.in);
+    Scanner entrada = new Scanner(System.in);
     
     @Override
     abstract public Freezer examinar(BancoDeSangue b) throws BloodTypeNotFoundException,BloodNotEnoughException ;
