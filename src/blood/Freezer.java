@@ -7,7 +7,7 @@ package blood;
 
 /**
  *
- * @author IACF
+ * @author WESLLES
  */
 public class Freezer {
     public Sangue sangue;
@@ -64,6 +64,7 @@ public class Freezer {
     }
     public Freezer() {
         this.sangue = new Sangue();
+        
     }
     
     
@@ -84,7 +85,7 @@ public class Freezer {
         this.quantidade += quantidade;
     }
     
-    public void doarQuantidade(float quantidade) {
+    public void doarQuantidade(int quantidade) {
         this.quantidade -= quantidade;
     }
 

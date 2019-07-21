@@ -10,5 +10,5 @@ package blood;
  * @author IACF
  */
 public interface Ipessoa  {
-    abstract public Freezer  examinar(BancoDeSangue b) throws BloodTypeNotFoundException,BloodNotEnoughException;
+    abstract public boolean  examinar() ;
 }

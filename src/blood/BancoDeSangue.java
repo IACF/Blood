@@ -20,27 +20,32 @@ public class BancoDeSangue {
     public BancoDeSangue() {
         //Função para usar o hashMap, é de uso obrigatório.
         this.freezer = new HashMap<>();
+        bancoDeSangue();
     }
     public void bancoDeSangue(){
         // Esta função estar Criando cada Freezer com seu respectivo tipo,
         //e preenchendo a compatibilidade de sangue de cada um dos Freezers.
         
+        /**
+         * ALTERADO
+         */
+        
         freezer.put("A+", new Freezer());
-        freezer.get("A+").setQuantidade(0);  
+        freezer.get("A+").setQuantidade(15);  
         freezer.put("B+", new Freezer());
-        freezer.get("B+").setQuantidade(0);  
+        freezer.get("B+").setQuantidade(15);  
         freezer.put("O+", new Freezer());
-        freezer.get("O+").setQuantidade(0);  
-        freezer.put("O+", new Freezer());
-        freezer.get("AB+").setQuantidade(0);  
+        freezer.get("O+").setQuantidade(15);  
         freezer.put("AB+", new Freezer());
-        freezer.get("O-").setQuantidade(0);  
+        freezer.get("AB+").setQuantidade(15);  
+        freezer.put("O-", new Freezer());
+        freezer.get("O-").setQuantidade(15);  
         freezer.put("A-", new Freezer());
-        freezer.get("A-").setQuantidade(0);  
+        freezer.get("A-").setQuantidade(15);  
         freezer.put("B-", new Freezer());
-        freezer.get("B-").setQuantidade(0);  
+        freezer.get("B-").setQuantidade(15);  
         freezer.put("AB-", new Freezer());
-        freezer.get("AB-").setQuantidade(0);  
+        freezer.get("AB-").setQuantidade(15);  
         
         for (String key : freezer.keySet()){
             //Capturamos o valor a partir da chave
@@ -52,15 +57,16 @@ public class BancoDeSangue {
 
     public void colocarNoFreezer(Sangue sangue) { 
         //  Neste argumento de função poderia colocar o Objeto Doador ao invés do Objeto Sangue.
+        
         this.freezer.get(sangue.tipagemSanguinea).setQuantidade(sangue.quantidade);  
     }
     
-    public void retirarDoFreezer(Sangue sangue, String tipagemSanguinea){
+    public void retirarDoFreezer(Sangue sangue){
         // Neste argumento de função poderia colocar o Objeto Receptor ao invés do Objeto Sangue.
-        if(this.freezer.get(tipagemSanguinea).getQuantidade() < sangue.quantidade )
+        if(this.freezer.get(sangue.tipagemSanguinea).getQuantidade() < sangue.quantidade )
             System.out.println("Não contém esta quantidade de sangue");  
         else
-            this.freezer.get(tipagemSanguinea).doarQuantidade(sangue.quantidade);
+            this.freezer.get(sangue.tipagemSanguinea).doarQuantidade(sangue.quantidade);
     }
     public void atualizarRepositorio(CadastroFrezer f){
         f.clear();
@@ -69,20 +75,21 @@ public class BancoDeSangue {
             f.insert(this.freezer.get(key));
         }
     }
-    public Freezer findFreezer(Sangue sangue){
-        
-        for (String key : this.freezer.keySet()){
-           
-           // pegar tamanho do array compatibilidade
-            for(int i=0 ; i<8 ; i++ )
-            {
-                if(  this.freezer.get(key).compatibilidade[i].equals(sangue.getTipagemSanguinea()) && this.freezer.get(key).getQuantidade() >= sangue.quantidade) 
-                {                  
-                    return this.freezer.get(key);                        
-                }else
-                    return null;
+    public boolean compativelFreezer(Freezer f ,Sangue sangue){
+            // pegar tamanho do array compatibilidade
+            for (String compatibilidade : f.compatibilidade) {               
+                if (compatibilidade != null && compatibilidade.equals(sangue.getTipagemSanguinea()) &&
+                        f.getQuantidade() >= sangue.quantidade) {    
+                    return true;
+                }
             }
-        }
-        return null;
+        return false;
     }
+    
+    public void listarFreezer(){
+        for (String key : this.freezer.keySet())
+            System.out.println("Frezer do tipo " +key+":"+this.freezer.get(key).getQuantidade()+"bolsas");             
+    }
+    
+    
 }

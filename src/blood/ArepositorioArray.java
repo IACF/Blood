@@ -17,7 +17,7 @@ public abstract class ArepositorioArray<Entidade> implements Irepositorio<Entida
     ArrayList<Entidade> table = new ArrayList();
     @Override
     public void insert(Entidade e){
-        table.add((Entidade) e);
+        table.add(e);
     }
     @Override
     public void clear(){

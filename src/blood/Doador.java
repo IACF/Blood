@@ -6,7 +6,10 @@
 package blood;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
+
 
 
 /**
@@ -15,77 +18,99 @@ import java.time.temporal.ChronoUnit;
  */
 public class Doador extends Apessoa {
     
-     private LocalDate ultimaDoacao;
-     private long diferencaemMes;
+     DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+     
+     public Doador(String nome, String cpf, int idd, float peso, boolean statusClin, String gen, Sangue blood, LocalDate data){
+         setNome(nome);
+         setCPF(cpf);
+         setIdade(idd);
+         this.peso = peso;
+         setStatusClinico(statusClin);
+         setGenero(gen);
+         this.sangue = blood;
+         this.ultimaTransfusao = data;
+     }
+     public Doador(){
+        this.statusClinico = true;
+        this.ultimaTransfusao = LocalDate.parse("01/01/0001", formatador);
+        this.nome = null;
+        this.cpf = null;
+        this.idade = 0;
+        this.genero = null;
+        this.sangue = null;
+        this.peso = 0;
+     }
     
      // Substituir o tipo string por DATE ; Tratar possiveis erros do tipo
-     public void CalculoDoacao(){
+     public int calculoUltimaTransfusao(){
         // esse metodo é feito para capturarmos a data atual quando o doador vai doar sangue, e logo faz
         // a diferenca entre a data do dia e a ultima doacao.
-        
+        int diferencaEmMes;
         LocalDate hoje = LocalDate.now();
-        diferencaemMes = ChronoUnit.MONTHS.between(hoje,ultimaDoacao); // retorna o numero de meses entre a ultima doacao e a data atual
+        LocalDate aux = LocalDate.parse("01/01/0001", formatador);
+        if(!this.ultimaTransfusao.equals(aux)){
+            diferencaEmMes = (int) ChronoUnit.MONTHS.between(this.ultimaTransfusao, hoje); // retorna o numero de meses entre a ultima doacao e a data atual
+            return diferencaEmMes;
+        }
+        else{
+            diferencaEmMes = (int) ChronoUnit.MONTHS.between(this.ultimaTransfusao, hoje);
+            return diferencaEmMes;
+        }
+    }
+    public void doarSangue(BancoDeSangue b){
+        LocalDate aux = LocalDate.parse("01/01/0001", formatador);
+                this.sangue.setQuantidade(1);
+                b.colocarNoFreezer(this.sangue);
+                System.out.println("***Doou***");
+                
+    }
      
-    };
-    public void doarSangue(BancoDeSangue b, float v){
-        
-        this.sangue.setQuantidade(v);
-        b.colocarNoFreezer(this.sangue);
-        //this.ultimaDoacao = "DataAtual" [[[ ??? ]]]
-    }
-    
-//    public void doarSangue(BancoDeSangue b, float v){
-//        
-//        if(diferencaemMes>=3){ // se a diferença entre a data atual e a ultima doacao for >=3 ( onde está tratando isso? 
-//        this.sangue.setQuantidade(v);
-//        ultimaDoacao= LocalDate.now(); // pega a data atual para ser agora a ultima doacao
-//        
-//        if(statusSangue=true) // isso está na fachada ( examinar sangue ) ?
-//        b.colocarNoFreezer(this.sangue);
-//        }
-//    }
-
-    public String getUltimaDoacao() {
-        return ultimaTransfusao;
-    }
-
-    public void setUltimaDoacao(String ultimaDoacao) {
-        this.ultimaTransfusao = ultimaDoacao;
-    }
-
-    
-    
     @Override
-    public Freezer examinar(BancoDeSangue b){
-        System.out.println("Peso");
-        peso = entrada.nextFloat();
-         try {
-          // se nao for float
-          // throw new NumberFormatException("Entrada do peso inválida!");
-               
-        } catch (NumberFormatException e) {
-            System.out.println(e);
+    public boolean examinar() {
+        this.setStatusClinico(true);
+        Scanner input = new Scanner(System.in);
+            
+        
+        
+        if (this.getIdade() > 17){
+            System.out.println("Menor de idade. Exigir autorização e formulários de responsabilidade.");
+            return false;
         }
-    
+        
+        if (this.getIdade() > 69){
+            System.out.println("Idade máxima.");
+            return false;
+        }
+        
+        if (this.getPeso() < 50){
+            System.out.println("Massa corporal insuficiente.");
+            System.out.println(getPeso());
+            return false;
+        }
+        
+        String perguntas[] = {"Teve Hepatite após os 10 anos de idade? [S/N] ", "Teve Hepatite B e/ou C? [S/N]", 
+         "Tem HIV? [S/N]","Teve Doença de Chagas? [S/N]", "Teve doenças aos virus HTLV I e II? [S/N]","Teve Malaria? [S/N]",
+         "Usou Drogas Ilicitas Injetaveis? [S/N]", "Teve sintomas de resfriado nos ultimos 7 dias? [S/N]", "Amamentação? (se o parto ocorreu há menos de 12 meses) [S/N]",
+         "Ingestão de bebida alcoólica nas 12 horas que antecedem a doação? [S/N]", "Tatuagem / maquiagem definitiva nos últimos 12 meses? [S/N]"};
+        int i =0;
+        String a;
          
-        try {
-            System.out.println("Tipo Sanguineo");
-            String tipo= entrada.nextLine();
-             if(!tipo.contains("A+") || !tipo.contains("A-") || !tipo.contains("B+") || !tipo.contains("B-")| !tipo.contains("AB+") | !tipo.contains("AB-") | !tipo.contains("O+") | !tipo.contains("O-"))
-                                
-                    throw new RuntimeException("Tipo Sanguineo inválido");
-             
-             else 
-                 this.sangue.setTipagemSanguinea(tipo); 
-                 
-             
-        } catch (RuntimeException e) {
-           System.out.println("Aconteceu um erro");
-           System.out.println(e);                             
-        }
-        return b.freezer.get(this.sangue.tipagemSanguinea);
-    }
-  
-
-    
+        while(!this.statusClinico || i < 11){
+            System.out.println(perguntas[i]);
+            a = input.nextLine();
+                if(a.equals("S")|| a.equals("s")){
+                    this.setStatusClinico(false);
+                    return false;
+                } else { if(a.equals("N")||a.equals("n")){
+                           i++;
+                            } else { 
+                                System.out.println("Entrada incorreta.");
+                               
+                                }
+                   
+                }
+        
+        }    
+           return (this.statusClinico); 
+    };
 }

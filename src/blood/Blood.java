@@ -5,6 +5,12 @@
  */
 package blood;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+
+
 /**
  *
  * @author IACF
@@ -14,41 +20,9 @@ public class Blood {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-//        String Nome;
-//        Doador doar = new Doador();
-//        Receptor receber = new Receptor();
-//        
-//        receber.examinar();
-//        doar.examinar();
-//        doar.setNome("NomeTeste");
-//        
-//        System.out.println(doar.getNome());
+    public static void main(String[] args) throws BloodTypeNotFoundException, BloodNotEnoughException {
         
-        
-        Doador a = new Doador();
-        
-        String teste;
-        teste = a.getClass().getName();
-        
-        System.out.println(teste);
-        
+        Fachada facha = new Fachada();
+        facha.menu();
     }
-    
-    
-    public static void cadastro(){
-        Doador p = new Doador();
-        Doador p2 = new Doador();
-        p.setGenero("M");
-        p.setNome("fasfa");
-        
-//...
-        CadastroPessoa bdPessoa = CadastroPessoa.getInstancia();
-        
-        
-        bdPessoa.insert(p);
-       p.sangue.setTipagemSanguinea("A+");
-    }
-    
 }

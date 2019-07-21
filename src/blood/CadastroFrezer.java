@@ -12,11 +12,19 @@ import java.util.ArrayList;
  * @author IACF
  */
 public class CadastroFrezer extends ArepositorioArray<Freezer> {
+     private static CadastroFrezer instancia = null;
+    static CadastroFrezer getInstancia() {
+        if (CadastroFrezer.instancia == null)
+           instancia = new CadastroFrezer();
+       return instancia;
+    }
 
     @Override
     public void insert(Freezer e) {
         super.insert(e);
     }
+    
+    
     
     
     

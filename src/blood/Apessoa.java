@@ -3,8 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/**
+ * ****** ALTERAÇÕES ********
+ * CONSTRUTORES: SANGUE, DOADOR
+ */
+
+
+
 package blood;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -13,18 +22,26 @@ import java.util.Scanner;
  */
 public abstract class Apessoa implements Ipessoa {
     protected String nome;
-    protected String Rg;
     protected String cpf;
     protected int idade;
     protected float peso;
     protected String genero;
     protected boolean statusClinico;
     protected Sangue sangue;
-    protected String ultimaTransfusao;
-    Scanner entrada = new Scanner(System.in);
+    protected LocalDate ultimaTransfusao;
+
+    public void setUltimaTransfusao(LocalDate ultimaTransfusao) {
+        this.ultimaTransfusao = ultimaTransfusao;
+    }
+
+    public LocalDate getUltimaTransfusao() {
+        return ultimaTransfusao;
+    }
+    
+    
     
     @Override
-    abstract public Freezer examinar(BancoDeSangue b) throws BloodTypeNotFoundException,BloodNotEnoughException ;
+    abstract public boolean examinar();
     
     
 
@@ -37,12 +54,12 @@ public abstract class Apessoa implements Ipessoa {
     }
 
 
-    public String getRg() {
-        return Rg;
+    public String getCPF() {
+        return cpf;
     }
 
-    public void setRg(String Rg) {
-        this.Rg = Rg;
+    public void setCPF(String cpf) {
+        this.cpf = cpf;
     }
 
     public int getIdade() {
@@ -76,7 +93,8 @@ public abstract class Apessoa implements Ipessoa {
     public void setStatusClinico(boolean statusClinico) {
         this.statusClinico = statusClinico;
     }
-    
+
+  
 
     
     

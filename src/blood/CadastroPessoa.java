@@ -11,9 +11,9 @@ package blood;
  */
 public class CadastroPessoa extends ArepositorioArray<Apessoa> {
    private static Apessoa pessoa;
-   private static CadastroPessoa instancia;
+   private static CadastroPessoa instancia = null;
    
-   private CadastroPessoa(){};
+   CadastroPessoa(){};
    
    public static CadastroPessoa getInstancia(){
        if (CadastroPessoa.instancia == null)
@@ -27,7 +27,6 @@ public class CadastroPessoa extends ArepositorioArray<Apessoa> {
                 return table.get(i);
        return null;
    }
-   
     
    @Override
    public void insert(Apessoa pessoa){

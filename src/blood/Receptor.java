@@ -5,53 +5,59 @@
  */
 package blood;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
 /**
  *
  * @author IACF
  */
-import java.util.Scanner;
 public class Receptor extends Apessoa {
-    
+    DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public Receptor(){
+        this.statusClinico = true;
+        this.ultimaTransfusao = LocalDate.parse("01/01/0001", formatador);
+        this.nome = null;
+        this.cpf = null;
+        this.idade = 0;
+        this.genero = null;
+        this.sangue = null;
+        this.peso = 0;
+    }
+    public Receptor(String nome, String cpf, int idd, float peso, String gen, Sangue blood){
+        setNome(nome);
+         setCPF(cpf);
+         setIdade(idd);
+         setPeso(peso);
+         setStatusClinico(true);
+         setGenero(gen);
+         this.sangue = blood;
+         this.ultimaTransfusao = LocalDate.parse("01/01/0001", formatador);
+    }
     
     @Override
-    public Freezer examinar(BancoDeSangue b)throws BloodTypeNotFoundException,BloodNotEnoughException {
-        
-        try {
-            System.out.println("Tipo Sanguineo");
-            String tipo= entrada.nextLine();
-            if(!tipo.contains("A+") || !tipo.contains("A-") || !tipo.contains("B+") || !tipo.contains("B-")| !tipo.contains("AB+") | !tipo.contains("AB-") | !tipo.contains("O+") | !tipo.contains("O-"))
-                throw new BloodTypeNotFoundException("Tipo Sanguineo inválido");
-            else 
-                this.sangue.setTipagemSanguinea(tipo);      
-        } catch (RuntimeException e) {
-           System.out.println("Aconteceu um erro");
-           System.out.println(e);
-        }
-        
-        Freezer f = b.findFreezer(this.sangue);
-        if(f != null)
-           return f;
+    public boolean examinar(){
+        return true;
            
-     throw new BloodNotEnoughException("erro LGU");
         
     }
     
-    public void receberSangue(BancoDeSangue b, float quantidadeDeSangue, String tipagemSanguinea){
+    public void receberSangue(BancoDeSangue b, int quantidadeDeSangue){
+        LocalDate hoje = LocalDate.now();
+        setUltimaTransfusao(hoje);
+        Sangue s = new Sangue();
+        s.setQuantidade(quantidadeDeSangue);
         
         this.sangue.setQuantidade(quantidadeDeSangue);
-        b.retirarDoFreezer(this.sangue, tipagemSanguinea);
-    }
-    public String getUltimaTransfusao() {
-        return ultimaTransfusao;
-    }
-
-    public void setUltimaTransfusao(String ultimaTransfusao) {
-        this.ultimaTransfusao = ultimaTransfusao;
-    }
-
-    
-
-    
-    
+        for(String key : b.freezer.keySet()){
+            if(b.compativelFreezer(b.freezer.get(key), this.sangue)){
+                s.setTipagemSanguinea(key);
+                b.retirarDoFreezer(s); 
+                return;
+            }
+        }
+        System.out.println("Quantidade insuficiente para recepção");
+    }  
     
 }

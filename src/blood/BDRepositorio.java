@@ -24,8 +24,6 @@ public class BDRepositorio<Entidade> extends ArepositorioArray<Entidade> {
     @Override
     public void insert(Entidade e) {
         
-        //String cmd = "inser\'t into "+table+" values()";
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -11,9 +11,22 @@ package blood;
  */
 public class Sangue {
     public String tipagemSanguinea;
-    public float quantidade;
+    public int quantidade;
 
-    public void setQuantidade(float quantidade) {
+    public int getQuantidade() {
+        return quantidade;
+    }
+    
+    public Sangue(String tipagem, int quantidade){
+        setTipagemSanguinea(tipagem);
+        setQuantidade(quantidade);
+    }
+    public Sangue(){
+        this.quantidade = 0;
+        this.tipagemSanguinea = null;
+    }
+
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
         
     }
